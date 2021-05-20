@@ -33,3 +33,25 @@ class Pessoa ():
 
     def imprimir_pessoa(self):
         print(self._nome, ", CPF: ", self._cpf,"Endereço: ",self._endereco,",Data de nascimento: ",self._data_nascimento)
+
+class Vendedor(Pessoa):
+    
+    def __init__(self, nome,endereco,cpf, data_nascimento):
+        super().__init__(nome,endereco,cpf, data_nascimento)
+        #self._salario = salario
+
+    def imprimir_vendedor(self):
+        super().imprimir_pessoa()
+        #print(self._salario)
+
+
+class Cliente(Pessoa):
+
+    def __init__(self, nome,endereco,cpf, data_nascimento):
+        super().__init__(nome,endereco,cpf, data_nascimento)
+        #self._profissao = profissao
+        #self._renda = renda
+
+    def imprimir_cliente(self):
+        super().imprimir_pessoa()
+        #print(self._profissao, self._renda)
