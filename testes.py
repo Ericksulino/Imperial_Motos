@@ -18,8 +18,12 @@ print(lj.cadas_moto(mot))
 
 print(lj.busca_vend('123'))
 
+vend.imprimir_vendedor()
+
 print(lj.impri_todas_motos())
 
 print(lj.venda('4321','321','123'))
 
 print(lj.impri_todas_motos())
+
+vend.imprimir_vendedor()
