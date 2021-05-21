@@ -39,10 +39,20 @@ class Vendedor(Pessoa):
     def __init__(self, nome,endereco,cpf, data_nascimento):
         super().__init__(nome,endereco,cpf, data_nascimento)
         #self._salario = salario
+        self._num_vendas = 0
+
+    @property
+    def num_vendas(self):
+        return self._num_vendas
+    
+    @num_vendas.setter
+    def num_vendas(self,nv):
+        self._num_vendas = nv
 
     def imprimir_vendedor(self):
         super().imprimir_pessoa()
         #print(self._salario)
+        print(self._num_vendas)
 
 
 class Cliente(Pessoa):
