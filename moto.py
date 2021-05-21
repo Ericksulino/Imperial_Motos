@@ -53,4 +53,4 @@ class Moto ():
         return self._num_chas
 
     def imprimeMoto(self):
-        return 'Nome: {} \n Marca: {} \n Tipo: {} \n Ano: {} \n'.format(self._nome,self._tipo,self._ano,self._valor)
+        return ' Nome: {} \n Marca: {} \n Tipo: {} \n Ano: {} \n'.format(self._nome,self.marca,self._tipo,self._ano,self._valor)
