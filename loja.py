@@ -20,12 +20,14 @@ class Loja():
             return True
         else:
             return False
-    def cadas_clie(self,pessoa):
+    
+    def cadas_vend(self,pessoa):
         if self.busca_vend(pessoa.cpf)==None:
-            self._lista_clie[pessoa.cpf] = pessoa
+            self._lista_vende[pessoa.cpf] = pessoa
             return True
         else:
             return False
+    
 
     def cadas_moto(self,moto):
         if self.busca_vend(moto.num_chas)==None:
@@ -45,11 +47,17 @@ class Loja():
         return False
 
     def impri_todas_motos(self):
-        print("Todas as motos:")
-        for moto in self.lista_motos:
-            print(moto.imprimeMoto())
+        if self._lista_motos != {}:
+            print("Todas as motos:")
+            for key in self._lista_motos:
+                print(self._lista_motos[key].imprimeMoto())
+        else:
+            print("Nenhuma moto cadastrada!")
 
     def impri_vende(self):
-        print("Vendedores cadastrados:")
-        for pess in self.lista_vende:
-            pess.imprimir_pessoa()
+        if self._lista_vende != {}:
+            print("Vendedores cadastrados:")
+            for key in self._lista_vende:
+                self._lista_vende[key].imprimir_pessoa()
+        else:
+            print("Nenhum vendedor cadastrado!")
