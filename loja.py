@@ -61,3 +61,20 @@ class Loja():
                 self._lista_vende[key].imprimir_pessoa()
         else:
             print("Nenhum vendedor cadastrado!")
+
+
+'''
+Efetuar login,
+Cadastrar o vendedor, 
+Cadastrar cliente, 
+Cadastrar produto, 
+Remover cliente, 
+Remover vendedor, 
+Remover produto, 
+Consultar um vendedor, 
+Consultar um vendedor, 
+Alterar um produto, 
+Alterar cliente, 
+Alterar vendedor, 
+Confirmar Pagamento
+'''
