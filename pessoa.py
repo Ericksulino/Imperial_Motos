@@ -1,11 +1,12 @@
 class Pessoa ():
 
-    __slots__ = ['_nome','_endereco','_cpf','_data_nascimento']
-    def __init__(self, nome,endereco, cpf, data_nascimento):
+    __slots__ = ['_nome','_endereco','_cpf','_data_nascimento','_senha']
+    def __init__(self, nome,endereco, cpf, data_nascimento,senha):
         self._nome = nome
         self._endereco = endereco
         self._cpf = cpf
         self._data_nascimento = data_nascimento
+        self._senha = senha
 
     @property
     def nome(self):
@@ -30,6 +31,10 @@ class Pessoa ():
     @property
     def data_nascimento(self):
         return self._data_nascimento
+
+    @property
+    def senha(self):
+        return self._senha
 
     def imprimir_pessoa(self):
         print(self._nome, ", CPF: ", self._cpf,"Endereço: ",self._endereco,",Data de nascimento: ",self._data_nascimento)
