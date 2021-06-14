@@ -1,18 +1,30 @@
+from os import curdir
+import sqlite3
+from sqlite3.dbapi2 import Cursor
+
 class Loja():
-    __slots__= ['_lista_clie','_lista_vende','_lista_motos']
+    '''__slots__= ['_lista_clie','_lista_vende','_lista_motos']
     def __init__(self):
         self._lista_clie = {}
         self._lista_vende = {}
-        self._lista_motos = {}
+        self._lista_motos = {}'''
     
-    def busca_clie(self,cpf):
-        return self._lista_clie.get(cpf,None)
+    def busca_clie(cpf:str,cursor):
+        pessoa = list(cursor.execute("SELECT * FROM pessoas WHERE cpf = {}".format(cpf)))
+        if (len(pessoa)!=0):
+            return True
+        return False
+        #return self._lista_clie.get(cpf,None)
        
     def busca_vend(self,cpf):
         return self._lista_vende.get(cpf,None)
         
-    def busca_moto(self,numChas):
-        return self._lista_motos.get(numChas,None)
+    def busca_moto(modelo:str,cursor):
+        moto = list(cursor.execute("SELECT * FROM motos WHERE modelo = {}".format(modelo)))
+        if (len(moto)!=0):
+            return True
+        return False
+        #return self._lista_motos.get(numChas,None)
         
     def cadas_clie(self,pessoa):
         if self.busca_clie(pessoa.cpf)==None:

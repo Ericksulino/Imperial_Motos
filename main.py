@@ -1,3 +1,6 @@
+import sqlite3
+from sqlite3.dbapi2 import Cursor
+
 import sys
 import os
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -8,6 +11,15 @@ from cadastro_moto import Cadastro_Moto
 from cadastro_pessoa import Cadastro_Pessoa
 from login import Login
 from home import Home
+
+bd = sqlite3.connect('bd.sqlite')
+cursor = bd.cursor()
+
+pessoas = """CREATE TABLE IF NOT EXISTS pessoas(id integir PRIMARY KEY,nome text NOT NULL,endereco text NOT NULL,cpf text NOT NULL,data_nascimento text NOT NULL,senha text NOT NULL);"""
+motos = """CREATE TABLE IF NOT EXISTS motos(id integir PRIMARY KEY,numero_chassi text NOT NULL,modelo text NOT NULL,marca text NOT NULL,categoria text NOT NULL,ano text NOT NULL,valor float NOT NULL);"""
+
+cursor.execute(pessoas)
+cursor.execute(motos)
 
 class Ui_Main(QtWidgets.QWidget):
     def setupUi(self, Main):
