@@ -70,3 +70,17 @@ class Cliente(Pessoa):
     def imprimir_cliente(self):
         super().imprimir_pessoa()
         #print(self._profissao, self._renda)
+
+    def busca_clie(buscar_cpf:str,cursor):
+    
+        pessoa = list(cursor.execute("SELECT * FROM pessoas WHERE cpf = ?",(buscar_cpf)))
+        if (len(pessoa)!=0):
+            return pessoa[0][0]
+        return False
+
+    def cadast_clie(nome:str,endereco:str,cpf:str,data_nascimento:str,cursor):
+
+        if Cliente.busca_clie(cpf,cursor)== False:
+            cursor.execute("INSERT INTO pessoas(nome,cpf,data_nascimento) VALUES(?,?,?)",(nome,cpf,data_nascimento))
+            return True
+        return False
