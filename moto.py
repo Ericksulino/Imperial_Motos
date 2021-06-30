@@ -54,3 +54,12 @@ class Moto ():
 
     def imprimeMoto(self):
         return ' Nome: {} \n Marca: {} \n Tipo: {} \n Ano: {} \n'.format(self._nome,self.marca,self._tipo,self._ano,self._valor)
+
+    def cadastra_moto(num_chas:str,modelo:str,marca:str,tipo:str,ano:str,valor:float,cursor):
+
+        cursor.execute('INSERT INTO motos(numero_chassi,modelo,marca,categoria,ano,valor) VALUES (?,?,?,?,?,?)'.format(num_chas,modelo,marca,tipo,ano,valor))
+
+    def buscar(modelo:str,cursor):
+
+       motos = list(cursor.execute('SELECT * FROM motos WHERE modelo = "{}"'.format(modelo)))[0][0]
+       return motos
