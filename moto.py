@@ -63,3 +63,7 @@ class Moto ():
 
        motos = list(cursor.execute('SELECT * FROM motos WHERE modelo = "{}"'.format(modelo)))[0][0]
        return motos
+
+    def venda(num_chas:str,cursor):
+
+        cursor.execute('DELETE * FROM motos WHERE numero_chassi = "{}"'.format(num_chas))
