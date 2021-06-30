@@ -61,6 +61,7 @@ class Main(QMainWindow,Ui_Main):
         self.tela_inicio.pushButton_4.clicked.connect(self.abrirCadastroPessoa)
         self.tela_cadastro_moto.pushButton.clicked.connect(self.botaoCadastraMoto)
         self.tela_cadsClie.pushButton.clicked.connect(self.botaoCadastraPes)
+        self.tela_login.pushButton.clicked.connect(self.botaoLogin)
                 
     def botaoCadastraMoto(self):
         numero_chassi = self.tela_cadastro_moto.lineEdit.text()
@@ -74,7 +75,9 @@ class Main(QMainWindow,Ui_Main):
         if not(numero_chassi == '' or modelo == '' or marca == '' or categoria == '' or ano == '' or valor == '' or cpf_cnpj == ''):
             #m = Moto(numero_chassi,modelo,marca,categorio,ano,valor,cpf_cnpj)
             pass
-    
+        else:
+            QMessageBox.information(None,'Sistema','Preecha todos os campos!')
+
     def botaoCadastraPes(self):
         nome = self.tela_cadsClie.lineEdit.text()
         endereco = self.tela_cadsClie.lineEdit_2.text()
@@ -85,6 +88,16 @@ class Main(QMainWindow,Ui_Main):
         if not(nome == '' or endereco == '' or cpf == '' or dtnas == '' or senha == ''):
             #m = Moto(numero_chassi,modelo,marca,categorio,ano,valor,cpf_cnpj)
             pass
+        else:
+            QMessageBox.information(None,'Sistema','Preecha todos os campos!')
+    
+    def botaoLogin(self):
+        cpf_cnpj = self.tela_login.lineEdit.text()
+        senha = self.tela_login.lineEdit_2.text()
+        if not(cpf_cnpj == '' or senha == ''):
+            pass
+        else:
+            QMessageBox.information(None,'Sistema','Preecha todos os campos!')
     
     def abrirHome(self):
         self.QtStack.setCurrentIndex(0)
