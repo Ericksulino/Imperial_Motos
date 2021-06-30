@@ -1,6 +1,6 @@
 class Pessoa ():
 
-    __slots__ = ['_nome','_endereco','_cpf','_data_nascimento','_senha']
+    #__slots__ = ['_nome','_endereco','_cpf','_data_nascimento','_senha']
     def __init__(self, nome,endereco, cpf, data_nascimento,senha):
         self._nome = nome
         self._endereco = endereco
@@ -39,48 +39,16 @@ class Pessoa ():
     def imprimir_pessoa(self):
         print(self._nome, ", CPF: ", self._cpf,"Endereço: ",self._endereco,",Data de nascimento: ",self._data_nascimento)
 
-class Vendedor(Pessoa):
-    
-    def __init__(self, nome,endereco,cpf, data_nascimento):
-        super().__init__(nome,endereco,cpf, data_nascimento)
-        #self._salario = salario
-        self._num_vendas = 0
-
-    @property
-    def num_vendas(self):
-        return self._num_vendas
-    
-    @num_vendas.setter
-    def num_vendas(self,nv):
-        self._num_vendas = nv
-
-    def imprimir_vendedor(self):
-        super().imprimir_pessoa()
-        #print(self._salario)
-        print(self._num_vendas)
-
-
-class Cliente(Pessoa):
-
-    def __init__(self, nome,endereco,cpf, data_nascimento):
-        super().__init__(nome,endereco,cpf, data_nascimento)
-        #self._profissao = profissao
-        #self._renda = renda
-
-    def imprimir_cliente(self):
-        super().imprimir_pessoa()
-        #print(self._profissao, self._renda)
-
-    def busca_clie(buscar_cpf:str,cursor):
+    def busca_pess(buscar_cpf:str,cursor):
     
         pessoa = list(cursor.execute("SELECT * FROM pessoas WHERE cpf = ?",(buscar_cpf)))
         if (len(pessoa)!=0):
             return pessoa[0][0]
         return False
 
-    def cadast_clie(nome:str,endereco:str,cpf:str,data_nascimento:str,cursor):
+    def cadast_pess(nome:str,endereco:str,cpf:str,data_nascimento:str,senha:str,cursor):
 
-        if Cliente.busca_clie(cpf,cursor)== False:
-            cursor.execute("INSERT INTO pessoas(nome,cpf,data_nascimento) VALUES(?,?,?)",(nome,cpf,data_nascimento))
+        if Pessoa.busca_pess(cpf,cursor)== False:
+            cursor.execute("INSERT INTO pessoas(nome,cpf,data_nascimento,senha) VALUES(?,?,?,?)",(nome,cpf,data_nascimento,senha))
             return True
         return False
