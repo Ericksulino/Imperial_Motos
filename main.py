@@ -59,20 +59,33 @@ class Main(QMainWindow,Ui_Main):
         self.tela_inicio.pushButton_2.clicked.connect(self.abrirCadastroMoto)
         self.tela_inicio.pushButton_3.clicked.connect(self.abrirLogin)
         self.tela_inicio.pushButton_4.clicked.connect(self.abrirCadastroPessoa)
+        self.tela_cadastro_moto.pushButton.clicked.connect(self.botaoCadastraMoto)
+        self.tela_cadsClie.pushButton.clicked.connect(self.botaoCadastraPes)
                 
     def botaoCadastraMoto(self):
-        numero_chassi = self.cadastro_moto.lineEdit.text()
-        modelo = self.cadatro_moto.lineEdit_2.text()
-        marca = self.cadastro_moto.lineEdit_3.text()
-        categorio = self.cadastro_mooto.lineEdit_4.text()
-        ano = self.cadastro_moto.lineEdit_5.text()
-        valor = self.cadastro_moto.lineEdit_6.text()
-        cpf_cnpj = self.cadastro_moto.lineEdit_7.text()
+        numero_chassi = self.tela_cadastro_moto.lineEdit.text()
+        modelo = self.tela_cadastro_moto.lineEdit_2.text()
+        marca = self.tela_cadastro_moto.lineEdit_3.text()
+        categoria = self.tela_cadastro_moto.lineEdit_4.text()
+        ano = self.tela_cadastro_moto.lineEdit_5.text()
+        valor = self.tela_cadastro_moto.lineEdit_6.text()
+        cpf_cnpj = self.tela_cadastro_moto.lineEdit_7.text()
 
-        if not(numero_chassi == '' or modelo == '' or marca == '' or categorio == '' or ano == '' or valor == '' or cpf_cnpj == ''):
+        if not(numero_chassi == '' or modelo == '' or marca == '' or categoria == '' or ano == '' or valor == '' or cpf_cnpj == ''):
             #m = Moto(numero_chassi,modelo,marca,categorio,ano,valor,cpf_cnpj)
             pass
+    
+    def botaoCadastraPes(self):
+        nome = self.tela_cadsClie.lineEdit.text()
+        endereco = self.tela_cadsClie.lineEdit_2.text()
+        cpf = self.tela_cadsClie.lineEdit_3.text()
+        dtnas = self.tela_cadsClie.lineEdit_4.text()
+        senha = self.tela_cadsClie.lineEdit_5.text()
 
+        if not(nome == '' or endereco == '' or cpf == '' or dtnas == '' or senha == ''):
+            #m = Moto(numero_chassi,modelo,marca,categorio,ano,valor,cpf_cnpj)
+            pass
+    
     def abrirHome(self):
         self.QtStack.setCurrentIndex(0)
 
