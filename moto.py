@@ -1,5 +1,5 @@
 class Moto ():
-    __slots__ = ['_num_chas','_nome','_marca','_tipo','_ano','_valor']
+    #__slots__ = ['_num_chas','_nome','_marca','_tipo','_ano','_valor']
     def __init__(self,num_chas,nome,marca,tipo,ano,valor):
         self._num_chas = num_chas
         self._nome = nome
@@ -56,13 +56,18 @@ class Moto ():
         return ' Nome: {} \n Marca: {} \n Tipo: {} \n Ano: {} \n'.format(self._nome,self.marca,self._tipo,self._ano,self._valor)
 
     def cadastra_moto(num_chas:str,modelo:str,marca:str,tipo:str,ano:str,valor:float,cursor):
+        if Moto.buscar(num_chas,cursor)== False:
+            cursor.execute('INSERT INTO motos(numero_chassi,modelo,marca,categoria,ano,valor) VALUES (?,?,?,?,?,?)'.format(num_chas,modelo,marca,tipo,ano,valor))
+            return True
+        else:
+            return False
+    def buscar(num_chas:str,cursor):
 
-        cursor.execute('INSERT INTO motos(numero_chassi,modelo,marca,categoria,ano,valor) VALUES (?,?,?,?,?,?)'.format(num_chas,modelo,marca,tipo,ano,valor))
-
-    def buscar(modelo:str,cursor):
-
-       motos = list(cursor.execute('SELECT * FROM motos WHERE modelo = "{}"'.format(modelo)))[0][0]
-       return motos
+       motos = list(cursor.execute('SELECT * FROM motos WHERE numero_chassi = "{}"'.format(num_chas)))[0][0]
+       if(len(motos)!=0):
+            return True
+       else:
+            return False
 
     def venda(num_chas:str,cursor):
 
