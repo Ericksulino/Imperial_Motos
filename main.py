@@ -12,6 +12,9 @@ from cadastro_pessoa import Cadastro_Pessoa
 from login import Login
 from home import Home
 
+from moto import Moto
+from pessoa import Pessoa
+
 bd = sqlite3.connect('bd.sqlite')
 cursor = bd.cursor()
 
@@ -73,8 +76,8 @@ class Main(QMainWindow,Ui_Main):
         cpf_cnpj = self.tela_cadastro_moto.lineEdit_7.text()
 
         if not(numero_chassi == '' or modelo == '' or marca == '' or categoria == '' or ano == '' or valor == '' or cpf_cnpj == ''):
-            #m = Moto(numero_chassi,modelo,marca,categorio,ano,valor,cpf_cnpj)
-            pass
+            if(Moto.cadastra_moto(numero_chassi,modelo,marca,categoria,ano,valor,cursor)):
+                QMessageBox.information(None,'Sistema','Cadastro realizado com sucesso!')
         else:
             QMessageBox.information(None,'Sistema','Preecha todos os campos!')
 
@@ -86,7 +89,7 @@ class Main(QMainWindow,Ui_Main):
         senha = self.tela_cadsClie.lineEdit_5.text()
 
         if not(nome == '' or endereco == '' or cpf == '' or dtnas == '' or senha == ''):
-            #m = Moto(numero_chassi,modelo,marca,categorio,ano,valor,cpf_cnpj)
+            #m =Moto(numero_chassi,modelo,marca,categorio,ano,valor,cpf_cnpj)
             pass
         else:
             QMessageBox.information(None,'Sistema','Preecha todos os campos!')
