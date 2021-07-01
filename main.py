@@ -76,7 +76,7 @@ class Main(QMainWindow,Ui_Main):
         cpf_cnpj = self.tela_cadastro_moto.lineEdit_7.text()
 
         if not(numero_chassi == '' or modelo == '' or marca == '' or categoria == '' or ano == '' or valor == '' or cpf_cnpj == ''):
-            if not(Moto.cadastra_moto(numero_chassi,modelo,marca,categoria,ano,valor,cursor)):
+            if (Moto.cadastra_moto(numero_chassi,modelo,marca,categoria,ano,valor,cursor)):
                 QMessageBox.information(None,'Sistema','Cadastro realizado com sucesso!')
         else:
             QMessageBox.information(None,'Sistema','Preecha todos os campos!')
