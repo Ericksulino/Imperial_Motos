@@ -57,13 +57,13 @@ class Moto ():
 
     def cadastra_moto(num_chas:str,modelo:str,marca:str,tipo:str,ano:str,valor:float,cursor):
         if Moto.buscar(num_chas,cursor)== False:
-            cursor.execute('INSERT INTO motos(numero_chassi,modelo,marca,categoria,ano,valor) VALUES (?,?,?,?,?,?)'.format(num_chas,modelo,marca,tipo,ano,valor))
+            cursor.execute('INSERT INTO motos(numero_chassi,modelo,marca,categoria,ano,valor) VALUES (?,?,?,?,?,?)',(num_chas,modelo,marca,tipo,ano,valor))
             return True
         else:
             return False
     def buscar(num_chas:str,cursor):
 
-       motos = list(cursor.execute('SELECT * FROM motos WHERE numero_chassi = "{}"'.format(num_chas)))[0][0]
+       motos = list(cursor.execute('SELECT * FROM motos WHERE numero_chassi = "{}"',(num_chas)))
        if(len(motos)!=0):
             return True
        else:
@@ -71,4 +71,4 @@ class Moto ():
 
     def venda(num_chas:str,cursor):
 
-        cursor.execute('DELETE * FROM motos WHERE numero_chassi = "{}"'.format(num_chas))
+        cursor.execute('DELETE * FROM motos WHERE numero_chassi = "{}"',(num_chas))
