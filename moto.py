@@ -56,17 +56,18 @@ class Moto ():
         return ' Nome: {} \n Marca: {} \n Tipo: {} \n Ano: {} \n'.format(self._nome,self.marca,self._tipo,self._ano,self._valor)
 
     def cadastra_moto(num_chas:str,modelo:str,marca:str,tipo:str,ano:str,valor:float,cursor):
-        if (Moto.buscar(num_chas,cursor)):
+        if not(Moto.buscar(num_chas,cursor)):
             cursor.execute('INSERT INTO motos(numero_chassi,modelo,marca,categoria,ano,valor) VALUES (?,?,?,?,?,?)',(num_chas,modelo,marca,tipo,ano,valor))
             return True
         else:
             return False
+
     def buscar(num_chas:str,cursor):
 
-       motos = list(cursor.execute('SELECT * FROM motos WHERE numero_chassi = "{}"',(num_chas)))
-       if(len(motos)!=0):
+        mot = list(cursor.execute("SELECT * FROM motos WHERE numero_chassi = '{}'".format(num_chas)))
+        if(len(mot)!=0):
             return True
-       else:
+        else:
             return False
 
     def venda(num_chas:str,cursor):
