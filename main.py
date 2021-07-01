@@ -78,6 +78,7 @@ class Main(QMainWindow,Ui_Main):
         if not(numero_chassi == '' or modelo == '' or marca == '' or categoria == '' or ano == '' or valor == '' or cpf_cnpj == ''):
             if (Moto.cadastra_moto(numero_chassi,modelo,marca,categoria,ano,valor,cursor)):
                 QMessageBox.information(None,'Sistema','Cadastro realizado com sucesso!')
+                bd.commit()
         else:
             QMessageBox.information(None,'Sistema','Preecha todos os campos!')
 
@@ -91,6 +92,7 @@ class Main(QMainWindow,Ui_Main):
         if not(nome == '' or endereco == '' or cpf == '' or dtnas == '' or senha == ''):
             if (Pessoa.cadast_pess(nome,endereco,cpf,dtnas,senha,cursor)):
                 QMessageBox.information(None,'Sistema','Cadastro realizado com sucesso!')
+                bd.commit()
         else:
             QMessageBox.information(None,'Sistema','Preecha todos os campos!')
     
@@ -100,6 +102,7 @@ class Main(QMainWindow,Ui_Main):
         if not(cpf_cnpj == '' or senha == ''):
             if (Pessoa.login(cpf_cnpj,senha,cursor)):
                 QMessageBox.information(None,'Sistema','Login Efetuado!')
+                bd.commit()
             else:
                 QMessageBox.information(None,'Sistema','Login Não Efetuado!')
         else:
