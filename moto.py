@@ -56,7 +56,7 @@ class Moto ():
         return ' Nome: {} \n Marca: {} \n Tipo: {} \n Ano: {} \n'.format(self._nome,self.marca,self._tipo,self._ano,self._valor)
 
     def cadastra_moto(num_chas:str,modelo:str,marca:str,tipo:str,ano:str,valor:float,cursor):
-        if Moto.buscar(num_chas,cursor)== False:
+        if (Moto.buscar(num_chas,cursor)):
             cursor.execute('INSERT INTO motos(numero_chassi,modelo,marca,categoria,ano,valor) VALUES (?,?,?,?,?,?)',(num_chas,modelo,marca,tipo,ano,valor))
             return True
         else:
