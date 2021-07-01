@@ -41,8 +41,8 @@ class Pessoa ():
 
     def busca_pess(buscar_cpf:str,cursor):
     
-        pessoa = list(cursor.execute("SELECT * FROM pessoas WHERE cpf = '{}'".format(buscar_cpf)))
-        if (len(pessoa)!=0):
+        pess = list(cursor.execute("SELECT * FROM pessoas WHERE cpf = '{}'".format(buscar_cpf)))
+        if (len(pess)!=0):
             return True
         else: 
             return False
@@ -50,7 +50,7 @@ class Pessoa ():
     def cadast_pess(nome:str,endereco:str,cpf:str,data_nascimento:str,senha:str,cursor):
 
         if not(Pessoa.busca_pess(cpf,cursor)):
-            cursor.execute("INSERT INTO pessoas(nome,endereco,cpf,data_nascimento,senha) VALUES(?,?,?,?,?)",(nome,endereco,cpf,data_nascimento,senha))
+            cursor.execute('INSERT INTO pessoas(nome,endereco,cpf,data_nascimento,senha) VALUES (?,?,?,?,?)',(nome,endereco,cpf,data_nascimento,senha))
             return True
         else:
             return False
