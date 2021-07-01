@@ -89,8 +89,8 @@ class Main(QMainWindow,Ui_Main):
         senha = self.tela_cadsClie.lineEdit_5.text()
 
         if not(nome == '' or endereco == '' or cpf == '' or dtnas == '' or senha == ''):
-            #m =Moto(numero_chassi,modelo,marca,categorio,ano,valor,cpf_cnpj)
-            pass
+            if (Pessoa.cadast_pess(nome,endereco,cpf,dtnas,senha,cursor)):
+                QMessageBox.information(None,'Sistema','Cadastro realizado com sucesso!')
         else:
             QMessageBox.information(None,'Sistema','Preecha todos os campos!')
     
