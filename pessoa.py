@@ -54,3 +54,10 @@ class Pessoa ():
             return True
         else:
             return False
+
+    def login(cpf:str,senha:str,cursor):
+        if not(Pessoa.busca_pess(cpf,cursor)):
+            cursor.execute("SELECT * FROM pessoas WHERE cpf = '{}' AND senha = '{}'".format(cpf,senha))
+            return True
+        else:
+            return False

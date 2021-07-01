@@ -98,7 +98,10 @@ class Main(QMainWindow,Ui_Main):
         cpf_cnpj = self.tela_login.lineEdit.text()
         senha = self.tela_login.lineEdit_2.text()
         if not(cpf_cnpj == '' or senha == ''):
-            pass
+            if (Pessoa.login(cpf_cnpj,senha,cursor)):
+                QMessageBox.information(None,'Sistema','Login Efetuado!')
+            else:
+                QMessageBox.information(None,'Sistema','Login Não Efetuado!')
         else:
             QMessageBox.information(None,'Sistema','Preecha todos os campos!')
     
