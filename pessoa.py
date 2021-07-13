@@ -1,3 +1,4 @@
+import sqlite3
 class Pessoa ():
 
     #__slots__ = ['_nome','_endereco','_cpf','_data_nascimento','_senha']
@@ -38,26 +39,51 @@ class Pessoa ():
 
     def imprimir_pessoa(self):
         print(self._nome, ", CPF: ", self._cpf,"Endereço: ",self._endereco,",Data de nascimento: ",self._data_nascimento)
-
-    def busca_pess(buscar_cpf:str,cursor):
-    
-        pess = list(cursor.execute("SELECT * FROM pessoas WHERE cpf = '{}'".format(buscar_cpf)))
-        if (len(pess)!=0):
+class PessoaCadas():
+    __slots__=['_lista']
+    def __init__(self):
+        bd = sqlite3.connect('bdPessoa.sqlite')
+        cursor = bd.cursor()
+        pessoas = """CREATE TABLE IF NOT EXISTS pessoas(id integer PRIMARY KEY,nome text NOT NULL,endereco text NOT NULL,
+                    cpf text NOT NULL,data_nascimento text NOT NULL,senha text NOT NULL);"""
+        print("OI")
+        cursor.execute(pessoas)
+        bd.commit()
+        bd.close()
+    def busca_pess(self,buscar_cpf):
+        bd = sqlite3.connect('bdPessoa.sqlite')
+        cursor = bd.cursor()
+        pessoa = list(cursor.execute("SELECT * from pessoas WHERE cpf = ?",((buscar_cpf,))))
+        print(type(pessoa))
+        if (len(pessoa)!=0):
+            bd.commit()
+            bd.close()
+            return pessoa
+        return None
+    def Up_pess(self,p):
+        bd = sqlite3.connect('bdPessoa.sqlite')
+        cursor = bd.cursor()
+        
+        if (self.busca_pess(p.cpf)!= None):
+            #cursor.execute('INSERT INTO pessoas(nome,endereco,cpf,data_nascimento,senha) VALUES(?,?,?,?,?)',(p.nome,p.endereco,p.cpf,p.data_nascimento,p.senha))
+            cursor.execute('UPDATE pessoas SET nome = "%s", endereco = "%s", cpf="%s", data_nascimento="%s" WHERE cpf = "%s"' % (str(p.nome),str(p.endereco),p.cpf,p.data_nascimento))
+            bd.commit()
+            bd.close()
             return True
-        else: 
-            return False
+        bd.commit()
+        bd.close()
+        return False
 
-    def cadast_pess(nome:str,endereco:str,cpf:str,data_nascimento:str,senha:str,cursor):
-
-        if not(Pessoa.busca_pess(cpf,cursor)):
-            cursor.execute('INSERT INTO pessoas(nome,endereco,cpf,data_nascimento,senha) VALUES (?,?,?,?,?)',(nome,endereco,cpf,data_nascimento,senha))
+    def cadast_pess(self,p):
+        bd = sqlite3.connect('bdPessoa.sqlite')
+        cursor = bd.cursor()
+        print(type(p.cpf))
+        
+        if (self.busca_pess(p.cpf)== None):
+            cursor.execute('INSERT INTO pessoas(nome,endereco,cpf,data_nascimento,senha) VALUES(?,?,?,?,?)',(p.nome,p.endereco,p.cpf,p.data_nascimento,p.senha))
+            bd.commit()
+            bd.close()
             return True
-        else:
-            return False
-
-    def login(cpf:str,senha:str,cursor):
-        if not(Pessoa.busca_pess(cpf,cursor)):
-            cursor.execute("SELECT * FROM pessoas WHERE cpf = '{}' AND senha = '{}'".format(cpf,senha))
-            return True
-        else:
-            return False
+        bd.commit()
+        bd.close()
+        return False
