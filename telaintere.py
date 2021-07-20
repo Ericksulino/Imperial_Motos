@@ -25,7 +25,7 @@ class TelaIntere(object):
         self.label_10.setFrameShape(QtWidgets.QFrame.WinPanel)
         self.label_10.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.label_10.setText("")
-        self.label_10.setPixmap(QtGui.QPixmap("../../../../../../Imagens/2.jpg"))
+        #self.label_10.setPixmap(QtGui.QPixmap("../../../../../../Imagens/2.jpg"))
         self.label_10.setScaledContents(True)
         self.label_10.setObjectName("label_10")
         self.label = QtWidgets.QLabel(self.centralwidget)
@@ -79,6 +79,8 @@ class TelaIntere(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+    def setImage(self,path):
+        self.label_10.setPixmap(QtGui.QPixmap(path))
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate

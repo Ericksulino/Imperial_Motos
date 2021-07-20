@@ -13,6 +13,7 @@ def insertBLOB(empId, name, photo):
         print("Connected to SQLite")
         sqlite_insert_blob_query = """ INSERT INTO new_employee
                                   (id, name, photo) VALUES (?, ?, ?)"""
+        
 
         empPhoto = convertToBinaryData(photo)
         # Convert data into tuple format
@@ -52,7 +53,7 @@ def readBlobData(empId):
             print("Storing employee image and resume on disk \n")
             dir_path = os.path.dirname(os.path.realpath(__file__))
 
-            photoPath = dir_path +'\cache'+'\\'+ name + ".jpg"
+            photoPath = dir_path +'\cache'+'\\'+ name +'$'+str(row[0])+ ".jpg"
             writeTofile(photo, photoPath)
             #writeTofile(resumeFile, resumePath)
 
