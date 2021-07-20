@@ -89,7 +89,7 @@ class Main(QMainWindow,Ui_Main):
         self.setupUi(self)        
         
         dir_path = os.path.dirname(os.path.realpath(__file__))
-        self.pasta =dir_path+ './cache'
+        self.pasta =dir_path+ '/cache'
         if os.path.isdir(self.pasta): # vemos de este diretorio ja existe
             print ('Ja existe uma pasta com esse nome!')
         else:
@@ -146,7 +146,7 @@ class Main(QMainWindow,Ui_Main):
         dire = os.listdir(path)
         for file in dire: 
             os.remove(file)
-        c=self.pasta.split('./cache')
+        c=self.pasta.split('/cache')
         chdir(c[0])
         testeArqui.readBlobData(1)
         chdir(path)
@@ -284,7 +284,7 @@ class Main(QMainWindow,Ui_Main):
         fotoComp=[]
         #self.pasta =self.pasta+ './cache'
         print(getcwd())
-        v=self.pasta.split('./cache')
+        v=self.pasta.split('/cache')
         print(self.pasta)
         chdir(v[0])
         print('oi')
@@ -326,7 +326,7 @@ class Main(QMainWindow,Ui_Main):
                     #print(self.fotoComp[i])
                 else:
                     lista.append('unknown.jpg')
-            self.buttClick+=8;
+            self.buttClick+=8
             #self.coloca(lista,self.buttClick)
             self.telaCompra.setImgens(lista,self.buttClick)  
             #self.compra.setImgens(lista,self.buttClick)
@@ -349,7 +349,7 @@ class Main(QMainWindow,Ui_Main):
         ano = self.tela_cadastro_moto.LineAno.text()
         valor = self.tela_cadastro_moto.LineValor.text()
         cpf_cnpj = self.tela_cadastro_moto.LineCPFVendedor.text()
-        v=self.pasta.split('./cache')
+        v=self.pasta.split('/cache')
         chdir(v[0])
         moto=Moto(numero_chassi,marca,categoria,ano,valor,modelo,cpf_cnpj)
         m=CadastroMoto()
@@ -424,7 +424,7 @@ class Main(QMainWindow,Ui_Main):
         cpf_cnpj = self.tela_login.lineEdit.text()
         senha = self.tela_login.lineEdit_2.text()
         if not(cpf_cnpj == '' or senha == ''):
-            v=self.pasta.split('./cache')
+            v=self.pasta.split('/cache')
             chdir(v[0])
             c=PessoaCadas()
             self.contaLogada=c.busca_pess(cpf_cnpj)
