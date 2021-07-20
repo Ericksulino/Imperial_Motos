@@ -89,7 +89,7 @@ class Main(QMainWindow,Ui_Main):
         self.setupUi(self)        
         
         dir_path = os.path.dirname(os.path.realpath(__file__))
-        self.pasta =dir_path+ '\cache'
+        self.pasta =dir_path+ './cache'
         if os.path.isdir(self.pasta): # vemos de este diretorio ja existe
             print ('Ja existe uma pasta com esse nome!')
         else:
@@ -146,7 +146,7 @@ class Main(QMainWindow,Ui_Main):
         dire = os.listdir(path)
         for file in dire: 
             os.remove(file)
-        c=self.pasta.split('\cache')
+        c=self.pasta.split('./cache')
         chdir(c[0])
         testeArqui.readBlobData(1)
         chdir(path)
@@ -282,9 +282,9 @@ class Main(QMainWindow,Ui_Main):
     def pegaFotos(self):
         
         fotoComp=[]
-        #self.pasta =self.pasta+ '\cache'
+        #self.pasta =self.pasta+ './cache'
         print(getcwd())
-        v=self.pasta.split('\cache')
+        v=self.pasta.split('./cache')
         print(self.pasta)
         chdir(v[0])
         print('oi')
@@ -314,7 +314,7 @@ class Main(QMainWindow,Ui_Main):
                 except:
                     lista.append('unknown.jpg')
             self.telaCompra.setImgens(lista,self.buttClick)  
-            self.buttClick-=8;
+            self.buttClick-=8
          
     def buttF(self):
         if(self.buttClick<len(self.fotoComp)):
@@ -349,12 +349,12 @@ class Main(QMainWindow,Ui_Main):
         ano = self.tela_cadastro_moto.LineAno.text()
         valor = self.tela_cadastro_moto.LineValor.text()
         cpf_cnpj = self.tela_cadastro_moto.LineCPFVendedor.text()
-        v=self.pasta.split('\cache')
+        v=self.pasta.split('./cache')
         chdir(v[0])
         moto=Moto(numero_chassi,marca,categoria,ano,valor,modelo,cpf_cnpj)
         m=CadastroMoto()
         if not(numero_chassi == '' or modelo == '' or marca == '' or categoria == '' or ano == '' or valor == '' or cpf_cnpj == ''or len(self.fotos)==0):
-            #self.pasta =self.pasta+ '\cache'
+            #self.pasta =self.pasta+ './cache'
             if (m.cadastra_moto(moto)):
                 QMessageBox.information(None,'Sistema','Cadastro realizado com sucesso!')
                 print(len(self.fotos))
@@ -394,12 +394,12 @@ class Main(QMainWindow,Ui_Main):
         cpf = self.tela_cadsClie.lineEdit_3.text()
         dtnas = self.tela_cadsClie.lineEdit_4.text()
         senha = self.tela_cadsClie.lineEdit_5.text()
-        v=self.pasta.split('\cache')
+        v=self.pasta.split('./cache')
         chdir(v[0])
         if not(nome == '' or endereco == '' or cpf == '' or dtnas == '' or senha == ''):
             p=Pessoa(nome,endereco,cpf,dtnas,senha)
             c=PessoaCadas()
-            #self.pasta =self.pasta+ '\cache'
+            #self.pasta =self.pasta+ './cache'
             if (c.cadast_pess(p)):
                 QMessageBox.information(None,'Sistema','Cadastro realizado com sucesso!')
                 self.tela_cadsClie.lineEdit.setText('')
@@ -424,7 +424,7 @@ class Main(QMainWindow,Ui_Main):
         cpf_cnpj = self.tela_login.lineEdit.text()
         senha = self.tela_login.lineEdit_2.text()
         if not(cpf_cnpj == '' or senha == ''):
-            v=self.pasta.split('\cache')
+            v=self.pasta.split('./cache')
             chdir(v[0])
             c=PessoaCadas()
             self.contaLogada=c.busca_pess(cpf_cnpj)
